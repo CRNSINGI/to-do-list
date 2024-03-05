@@ -1,39 +1,55 @@
-document.querySelector('#push').onclick = function(){
-    if(document.querySelector('#newtask input').value.length == 0){
-        alert("Please Enter a Task")
-    }
+window.addEventListener('load', () => {
+const form = document.querySelector("#new-task-form");
+const input = document.querySelector("#new-task-input");
+const list_el = document.querySelector("#tasks");
 
-    else{
-        document.querySelector('#tasks').innerHTML += `
-            <div class="task">
-                <span id="taskname">
-                    ${document.querySelector('#newtask input').value}
-                </span>
-                <button class="delete">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </div>
-        `;
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-        var current_tasks = document.querySelectorAll(".delete");
-        for(var i=0; i<current_tasks.length; i++){
-            current_tasks[i].onclick = function(){
-                this.parentNode.remove();
-            }
-        }
-    }
-}
+    const task = input.value;
 
-// Create a new img element
-var deleteButton = document.createElement("img");
+    if(!task) {
+        alert("Please fill out the task");
+        return;
+    } 
 
-// Set the src attribute to the path of your delete button image
-deleteButton.src = ""; // Change 'delete_button.png' to your actual image path
+    const task_el = document.createElement("div");
+    task_el.classList.add("task");
 
-// Optionally, you can set other attributes like alt text, width, height, etc.
-deleteButton.alt = "Delete Button";
-deleteButton.width = 30;
-deleteButton.height = 30;
+    const task_content_el = document.createElement("div");
+    task_content_el.classList.add("content");
 
-// Append the img element to the container
-document.getElementById("container").appendChild(deleteButton);
+    task_el.appendChild(task_content_el);
+
+    const task_input_el = document.createElement("input");
+    task_input_el.classList.add("text");
+    task_input_el.type = "text";
+    task_input_el.value = task;
+    task_input_el.setAttribute("readonly", "readonly");
+
+    task_content_el.appendChild(task_input_el);
+
+    const task_actions_el = document.createElement("div");
+    task_actions_el.classList.add("actions");
+
+    const task_edit_el = document.createElement("button");
+    task_edit_el.classList.add("edit");
+    task_edit_el.innerHTML = "Edit";
+
+    const task_delete_el = document.createElement("button");
+    task_delete_el.classList.add("delete");
+    task_delete_el.innerHTML = "Delete";
+    
+    task_actions_el.appendChild(task_edit_el);
+    task_actions_el.appendChild(task_delete_el);
+
+    task_actions_el.appendChild(task_actions_el);
+
+    list_el.appendChild(task_el);
+    
+    input.value = "";
+
+})
+
+})
+
