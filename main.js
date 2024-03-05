@@ -23,3 +23,17 @@ document.querySelector('#push').onclick = function(){
         }
     }
 }
+
+// Create a new img element
+var deleteButton = document.createElement("img");
+
+// Set the src attribute to the path of your delete button image
+deleteButton.src = ""; // Change 'delete_button.png' to your actual image path
+
+// Optionally, you can set other attributes like alt text, width, height, etc.
+deleteButton.alt = "Delete Button";
+deleteButton.width = 30;
+deleteButton.height = 30;
+
+// Append the img element to the container
+document.getElementById("container").appendChild(deleteButton);
