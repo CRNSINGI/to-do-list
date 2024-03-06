@@ -96,15 +96,12 @@ main {
 
 }
 
-.task-list{
-    padding: 1rem;
-}
-
 .task-list h2 {
     font-size: 1.5rem;
     font-weight: 300;
     color: var(--gray);
     margin-bottom: 1rem;
+    padding: 1rem;
 }
 
 #tasks .task {
